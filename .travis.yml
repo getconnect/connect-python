@@ -1,0 +1,29 @@
+language: python
+python:
+- '2.6'
+- '2.7'
+- '3.2'
+- '3.3'
+- '3.4'
+- '3.5'
+install:
+- pip install -r requirements.txt
+- pip install -r requirements_testing.txt
+- pip install pytest>=2.7.3 --upgrade
+- pip install pytest-cov
+- if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1;
+  fi
+- if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage;
+  fi
+- pip install codecov
+script: py.test --cov=connect tests/
+after_success: codecov
+deploy:
+  provider: pypi
+  user: richard.kong.au@gmail.com
+  password:
+    secure: WqwzOXtJMgFda2419x0vM+qm+U+1M9qHoe5D/DamozWrPQrRjb28c6d3W64oW0PEwbNtER68WXRFz8xZKfsI03s04IZ506HrJHGekJ4DcvljbFhrfcjHJuKTmYqCBi/8UI7VM2Jh/Ufcdy3xqxt+0huN8yeEfB9BxRBlBDxluub210xgI13UNlcfH5YdEyOOc9+78G2F1aVl9aytnHpVH4rbwr0GevnJSCzno5t6T111uduOLe2rOtYiDI6ahK9QpUx5CYN/sfCoPW6G3PKAIkzS9b92SbeiLIX5LfFYJLv3Sah9EwOfnnc+I7RwYRwDMLDdzGMmYPd+3D6SzBJhydud8uB3HG+X2Oyersqxz6DbEyXmG7LjUjV6l24tF/dp5AbOtHLDWr/mKJ2dDEYrTNuU455DbXz4N0g5DhHRxzBZwlcgqjse4SWItKMrIAwxNBLFfAbHJjeeOWnzxT3gv1etJeY9oq5fPfS8dluJ5Ch0I1/EMSL/xaVbSoWqo2ZyGnwhqYe/Sxz4Ik5hKPqLfqgk0LBBbt5/x6tsUbzz46Ml01Z31r73ifEWMK5B0JTg0AhLc/bTEgcXURIiL5QGIoWscSmjQK7B4vj8rB8GG3ZWuGvK6QerigMUl6c5KOQUZt0CxD4hMHHSyDEmfvqEYOEXPKMSCr6y9GEngykCqZA=
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true
+    repo: richard-kong/connect-python
