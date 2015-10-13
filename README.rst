@@ -3,10 +3,10 @@
 
 .. image:: https://badge.fury.io/py/connect-client.svg
     :target: http://badge.fury.io/py/connect-client
-.. image:: http://codecov.io/github/richard-kong/connect-python/coverage.svg?branch=master
-    :target: http://codecov.io/github/richard-kong/connect-python?branch=master
-.. image:: https://travis-ci.org/richard-kong/connect-python.svg?branch=master
-    :target: https://travis-ci.org/richard-kong/connect-python
+.. image:: http://codecov.io/github/getconnect/connect-python/coverage.svg?branch=master
+    :target: http://codecov.io/github/getconnect/connect-python?branch=master
+.. image:: https://travis-ci.org/getconnect/connect-python.svg?branch=master
+    :target: https://travis-ci.org/getconnect/connect-python
 
 This is the official `Connect <https://getconnect.io>`_ python client.
 
@@ -42,3 +42,7 @@ Changelog
 0.1.0
 
 - Initial version
+
+0.1.1
+
+- Minor bug fixes
