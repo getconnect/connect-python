@@ -127,7 +127,7 @@ class ConnectClient(object):
         lives
         :param parameters: connect filter to retrieve specific events
         """
-        results, status_code = self._api.get_events(collection_name,parameters)
+        results, status_code = self._api._get_export(collection_name,parameters)
         response = {"http_status_code": status_code,
                     "results": results}
         return response
@@ -141,7 +141,7 @@ class ConnectClient(object):
         the HTTP connect doco: 
         http://docs.getconnect.io/http#exporting-events
         """        
-        status_url  = self._api.post_export(collection_name,parameters)
+        status_url  = self._api._post_export(collection_name,parameters)
         status_url_split = status_url.replace("https://","").split("/")
         export_id = status_url_split[4]
 
@@ -152,7 +152,7 @@ class ConnectClient(object):
         :param collection_name: name of collection
         :parma export_id: as supplied by bulk_export methid
         """
-        results, status_code = self._api.get_export_status(collection_name, 
+        results, status_code = self._api._get_export_status(collection_name, 
                                                           export_id)
         response = {"results" : results,
                     "http_status_code" : status_code}
